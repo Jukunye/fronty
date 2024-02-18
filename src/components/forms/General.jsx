@@ -90,7 +90,7 @@ const General = ({ truck, onSubmissionSuccess }) => {
     try {
       setPostLoading(true); // Set loading to true when POST request starts
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/trucks/",
+        "http://localhost:8000/api/trucks/",
         truckData
       );
       // console.log("Post response:", response.data);

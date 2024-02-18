@@ -40,10 +40,13 @@ function SignIn() {
       password: data.get("password"),
     });
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
-        username: data.get("email"),
-        password: data.get("password"),
-      });
+      const response = await axios.post(
+        "http://localhost:8000/api/auth/login/",
+        {
+          username: data.get("email"),
+          password: data.get("password"),
+        }
+      );
       console.log(response.data.token);
 
       if (response.status === 200) {

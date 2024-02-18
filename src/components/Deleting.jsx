@@ -25,7 +25,7 @@ function Deleting({ truck, onDeleteSuccess }) {
     try {
       setDeleteLoading(true); // Set loading to true when DELETE request starts
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/truck/${truck.id}/`
+        `http://localhost:8000/api/truck/${truck.id}/`
       );
       // Perform any actions needed after successful delete
       onDeleteSuccess(); // Call the onDeleteSuccess callback

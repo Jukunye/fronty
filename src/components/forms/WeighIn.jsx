@@ -55,7 +55,7 @@ const WeighIn = ({ truck, onSubmissionSuccess }) => {
     try {
       setPutLoading(true); // Set loading to true when POST request starts
       const response = await axios.put(
-        `http://127.0.0.1:8000/api/truck/${truck.id}/`,
+        `http://localhost:8000/api/truck/${truck.id}/`,
         truck
       );
       // console.log("Post response:", response.data);
