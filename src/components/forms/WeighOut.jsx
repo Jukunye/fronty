@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Flex, Form, Input, InputNumber, TimePicker } from "antd";
 import ChooseTruck from "./ChooseTruck";
 import { Typography } from "@mui/material";
+import axios from "axios";
 
 const formItemLayout = {
   labelCol: {
@@ -21,12 +22,41 @@ const formItemLayout = {
     },
   },
 };
-const WeighOut = (props) => {
-  const [value, setValue] = useState(null);
-  const onChange = (time) => {
-    setValue(time);
+const WeighOut = ({ truck, onSubmissionSuccess }) => {
+  const [putLoading, setPutLoading] = useState(false);
+  const [formDisabled, setFormDisabled] = useState(false);
+  // const [value, setValue] = useState(null);
+
+  const onFinish = async (values) => {
+    const weighbridge_out = {
+      last_weight: values.last_weight,
+      weight_difference: values.weight_difference,
+      operator_name: values.operator_name,
+      officer_name: values.officer_name,
+    };
+
+    truck.weighbridge_out = weighbridge_out;
+
+    try {
+      setPutLoading(true); // Set loading to true when POST request starts
+      const response = await axios.put(
+        `http://127.0.0.1:8000/api/truck/${truck.id}/`,
+        truck
+      );
+      // console.log("Post response:", response.data);
+      // Perform any actions needed after successful post
+      onSubmissionSuccess();
+      setPutLoading(false); // Set loading to false after successful POST request
+      setFormDisabled(true);
+    } catch (error) {
+      // console.error("Error posting data:", error);
+      setPutLoading(false); // Set loading to false if there's an error
+    }
   };
-  return props.truck ? (
+  // const onChange = (time) => {
+  //   setValue(time);
+  // };
+  return truck ? (
     <Form
       {...formItemLayout}
       variant="filled"
@@ -34,6 +64,9 @@ const WeighOut = (props) => {
         maxWidth: 700,
         padding: 12,
       }}
+      onFinish={onFinish}
+      disabled={formDisabled || truck.weighbridge_out}
+      initialValues={truck.weighbridge_out}
     >
       <Form.Item
         label={
@@ -76,7 +109,7 @@ const WeighOut = (props) => {
           }}
         />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
         label={
           <Typography variant="body2" style={{ fontSize: "14px" }}>
             Time
@@ -91,7 +124,7 @@ const WeighOut = (props) => {
         ]}
       >
         <TimePicker value={value} onChange={onChange} />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item
         label={
           <Typography variant="body2" style={{ fontSize: "14px" }}>
@@ -133,8 +166,8 @@ const WeighOut = (props) => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" loading={putLoading}>
+          {putLoading ? "Submitting..." : "Submit"}
         </Button>
       </Form.Item>
     </Form>

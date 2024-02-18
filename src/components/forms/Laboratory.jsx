@@ -76,7 +76,8 @@ const Laboratory = ({ truck, onSubmissionSuccess }) => {
         padding: 12,
       }}
       onFinish={onFinish}
-      disabled={formDisabled}
+      disabled={formDisabled || truck.quality_control}
+      initialValues={truck.quality_control}
     >
       <Form.Item
         label={
