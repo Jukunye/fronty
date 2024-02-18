@@ -28,7 +28,7 @@ function AppHeader() {
         <Box
           component="img"
           sx={styles.appLogo}
-          src="https://logos-world.net/wp-content/uploads/2020/03/Coca-Cola-Logo.png"
+          src="https://github.com/Shadkoech/Kibhoret_LandingPage/blob/master/landing_page/src/Assets/Logo.png?raw=true"
         />
         <Box sx={{ flexGrow: 1 }} />
         <IconButton title="Notification">

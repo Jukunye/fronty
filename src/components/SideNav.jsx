@@ -49,42 +49,42 @@ function SideNav() {
         <MenuItem
           active={location.pathname === "/"}
           component={<Link to="/" />}
-          icon={<DashboardOutlinedIcon />}
+          icon={<DashboardOutlinedIcon style={{ color: "#f73378" }} />}
         >
           <Typography variant="body2">Dashboard</Typography>
         </MenuItem>
         <MenuItem
           active={location.pathname === "/trucks"}
           component={<Link to="/trucks" />}
-          icon={<LocalShippingOutlinedIcon />}
+          icon={<LocalShippingOutlinedIcon style={{ color: "#834bff" }} />}
         >
           <Typography variant="body2">Trucks</Typography>
         </MenuItem>
         <MenuItem
           active={location.pathname === "/weighbridgein"}
           component={<Link to="/weighbridgein" />}
-          icon={<ScaleOutlinedIcon />}
+          icon={<ScaleOutlinedIcon style={{ color: "#5393ff" }} />}
         >
           <Typography variant="body2">Weighbridge In</Typography>
         </MenuItem>
         <MenuItem
           active={location.pathname === "/lab"}
           component={<Link to="/lab" />}
-          icon={<ScienceOutlinedIcon />}
+          icon={<ScienceOutlinedIcon style={{ color: "#33eaff" }} />}
         >
           <Typography variant="body2">Lab</Typography>
         </MenuItem>
         <MenuItem
           active={location.pathname === "/tankfarm"}
           component={<Link to="/tankfarm" />}
-          icon={<OilBarrelOutlinedIcon />}
+          icon={<OilBarrelOutlinedIcon style={{ color: "#33eb91" }} />}
         >
           <Typography variant="body2">Tankfarm</Typography>
         </MenuItem>
         <MenuItem
           active={location.pathname === "/weighbridgeout"}
           component={<Link to="/weighbridgeout" />}
-          icon={<ScaleOutlinedIcon />}
+          icon={<ScaleOutlinedIcon style={{ color: "#ffee33" }} />}
         >
           <Typography variant="body2">Weighbridge Out</Typography>
         </MenuItem>
@@ -92,7 +92,7 @@ function SideNav() {
         <MenuItem
           active={location.pathname === "/addtruck"}
           component={<Link to="/addtruck" />}
-          icon={<AddBoxIcon />}
+          icon={<AddBoxIcon style={{ color: "#ff5722" }} />}
         >
           <Typography variant="body2">Add Truck</Typography>
         </MenuItem>
