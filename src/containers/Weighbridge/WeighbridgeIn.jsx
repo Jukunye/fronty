@@ -14,10 +14,12 @@ import Deleting from "../../components/Deleting";
 import { Link } from "react-router-dom";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Empty } from "antd";
+import ViewTruck from "../../components/ViewTruck";
 
 const weighbridgeIn = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleEdit = (params) => {
     console.log(params.row);
@@ -57,11 +59,10 @@ const weighbridgeIn = () => {
             </Link>
           </Tooltip>
           <Tooltip title="View">
-            <IconButton>
+            <IconButton onClick={() => setDialogOpen(true)}>
               <OpenInNewOutlinedIcon />
             </IconButton>
           </Tooltip>
-          <Deleting />
         </Box>
       ),
     },
@@ -97,16 +98,16 @@ const weighbridgeIn = () => {
         </Box>
       ) : (
         <div>
-          {data ? (
+          {data && data.total_trucks !== 0 ? (
             <Box sx={{ my: 2 }}>
               <Paper elevation={2}>
-                <Typography variant="h6" sx={{ pt: 1, ml: 2 }}>
+                <Typography variant="h6" sx={{ pt: 2, ml: 2 }}>
                   Weighbridge In
                 </Typography>
                 <Typography
                   variant="caption"
                   display="block"
-                  sx={{ ml: 2, mb: 2 }}
+                  sx={{ ml: 2, mb: 3 }}
                 >
                   {data.total_trucks} in progress.
                 </Typography>
@@ -115,10 +116,8 @@ const weighbridgeIn = () => {
                   columns={columns}
                   pageSize={25}
                   rowsPerPageOptions={[25]}
-                  // checkboxSelection
                   autoHeight
                   rowHeight={50}
-                  sx={{ bgcolor: "neutral.light" }}
                 />
               </Paper>
             </Box>
@@ -134,6 +133,8 @@ const weighbridgeIn = () => {
           )}
         </div>
       )}
+      {/* Render the FullScreenDialog component */}
+      <ViewTruck open={dialogOpen} handleClose={() => setDialogOpen(false)} />
     </div>
   );
 };

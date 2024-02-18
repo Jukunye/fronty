@@ -35,9 +35,9 @@ const Trucks = () => {
 
   const columns = [
     {
-      field: "driver",
-      headerName: "Driver",
-      minWidth: 170,
+      field: "id",
+      headerName: "ID",
+      minWidth: 20,
       flex: 1,
     },
     {
@@ -51,6 +51,13 @@ const Trucks = () => {
       headerName: "Trailer plate",
       minWidth: 100,
       flex: 1,
+    },
+    {
+      field: "general_info.delivery_number",
+      headerName: "Delivery No.",
+      minWidth: 100,
+      flex: 1,
+      valueGetter: (params) => params.row.general_info?.delivery_number || "",
     },
     {
       field: "",

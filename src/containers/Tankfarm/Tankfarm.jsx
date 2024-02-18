@@ -14,69 +14,69 @@ import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
 import Deleting from "../../components/Deleting";
 import { Link } from "react-router-dom";
 import { Empty } from "antd";
-
-const columns = [
-  {
-    field: "driver",
-    headerName: "Driver",
-    minWidth: 170,
-    flex: 1,
-  },
-  {
-    field: "cab_plate",
-    headerName: "Cab plate",
-    minWidth: 100,
-    flex: 1,
-  },
-  {
-    field: "trailer_plate",
-    headerName: "Trailer plate",
-    minWidth: 100,
-    flex: 1,
-  },
-  {
-    field: "",
-    headerName: "Actions",
-    minWidth: 170,
-    flex: 1,
-    renderCell: (params) => (
-      <Box>
-        <Tooltip title="Edit truck">
-          <Link to="/addtruck" state={{ number: 3, truck: params.row }}>
-            <IconButton>
-              <EditOutlinedIcon />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        <Tooltip title="View">
-          <IconButton>
-            <OpenInNewOutlinedIcon />
-          </IconButton>
-        </Tooltip>
-        <Deleting />
-      </Box>
-    ),
-  },
-];
+import ViewTruck from "../../components/ViewTruck";
 
 const Tankfarm = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/tankfarm/");
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/tankfarm/");
-        setData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
+
+  const columns = [
+    {
+      field: "driver",
+      headerName: "Driver",
+      minWidth: 170,
+      flex: 1,
+    },
+    {
+      field: "cab_plate",
+      headerName: "Cab plate",
+      minWidth: 100,
+      flex: 1,
+    },
+    {
+      field: "trailer_plate",
+      headerName: "Trailer plate",
+      minWidth: 100,
+      flex: 1,
+    },
+    {
+      field: "",
+      headerName: "Actions",
+      minWidth: 170,
+      flex: 1,
+      renderCell: (params) => (
+        <Box>
+          <Tooltip title="Edit truck">
+            <Link to="/addtruck" state={{ number: 3, truck: params.row }}>
+              <IconButton>
+                <EditOutlinedIcon />
+              </IconButton>
+            </Link>
+          </Tooltip>
+          <Tooltip title="View">
+            <IconButton onClick={() => setDialogOpen(true)}>
+              <OpenInNewOutlinedIcon style={{ color: "#5393ff" }} />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      ),
+    },
+  ];
 
   return (
     <div>
@@ -91,16 +91,16 @@ const Tankfarm = () => {
         </Box>
       ) : (
         <div>
-          {data ? (
+          {data && data.total_trucks !== 0 ? (
             <Box sx={{ my: 2 }}>
               <Paper elevation={2}>
-                <Typography variant="h6" sx={{ pt: 1, ml: 2 }}>
+                <Typography variant="h6" sx={{ pt: 2, ml: 2 }}>
                   Quality Control
                 </Typography>
                 <Typography
                   variant="caption"
                   display="block"
-                  sx={{ ml: 2, mb: 2 }}
+                  sx={{ ml: 2, mb: 3 }}
                 >
                   {data.total_trucks} in progress.
                 </Typography>
@@ -112,7 +112,6 @@ const Tankfarm = () => {
                   // checkboxSelection
                   autoHeight
                   rowHeight={50}
-                  sx={{ bgcolor: "neutral.light" }}
                 />
               </Paper>
             </Box>
@@ -128,6 +127,8 @@ const Tankfarm = () => {
           )}
         </div>
       )}
+      {/* Render the FullScreenDialog component */}
+      <ViewTruck open={dialogOpen} handleClose={() => setDialogOpen(false)} />
     </div>
   );
 };
