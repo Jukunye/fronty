@@ -35,19 +35,15 @@ function SignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
     try {
       const response = await axios.post(
         "http://localhost:8000/api/auth/login/",
         {
-          username: data.get("email"),
+          username: data.get("username"),
           password: data.get("password"),
         }
       );
-      console.log(response.data.token);
 
       if (response.status === 200) {
         if (
@@ -72,7 +68,7 @@ function SignIn() {
       // localStorage.setItem("token", token);
 
       // // Redirect the user
-      // window.location.href = "/"; // Redirect to the dashboard or any other desired route
+      window.location.href = "/"; // Redirect to the dashboard or any other desired route
     } catch (error) {
       // Handle login error
       console.error("Login failed:", error);
@@ -89,9 +85,14 @@ function SignIn() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
-        </Avatar>
+        </Avatar> */}
+        <Box
+          component="img"
+          sx={styles.appLogo}
+          src="https://github.com/Shadkoech/Kibhoret_LandingPage/blob/master/landing_page/src/Assets/Logo.png?raw=true"
+        />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -100,10 +101,10 @@ function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
           />
           <TextField
@@ -131,5 +132,15 @@ function SignIn() {
     </Container>
   );
 }
+
+/** @type {import("@mui/material").SxProps} */
+const styles = {
+  appLogo: {
+    borderRadius: 2,
+    width: 180,
+    mb: 5,
+    cursor: "pointer",
+  },
+};
 
 export default SignIn;

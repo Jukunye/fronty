@@ -36,6 +36,7 @@ const WeighOut = ({ truck, onSubmissionSuccess }) => {
     };
 
     truck.weighbridge_out = weighbridge_out;
+    truck.status = "cleared";
 
     try {
       setPutLoading(true); // Set loading to true when POST request starts

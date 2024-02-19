@@ -45,6 +45,7 @@ const Laboratory = ({ truck, onSubmissionSuccess }) => {
     };
 
     truck.quality_control = quality_control;
+    truck.status = "Tankfarm";
 
     try {
       setPutLoading(true); // Set loading to true when POST request starts

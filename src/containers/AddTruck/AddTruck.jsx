@@ -77,7 +77,7 @@ function AddTruck(props) {
             my={2}
             sx={{
               position: "sticky",
-              top: "48px", // Adjust this value to match the height of your tabs
+              top: "96px", // Adjust this value to match the height of your tabs
               zIndex: 2,
               backgroundColor: "white",
             }}

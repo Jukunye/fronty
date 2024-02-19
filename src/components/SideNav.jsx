@@ -49,7 +49,7 @@ function SideNav() {
         <MenuItem
           active={location.pathname === "/"}
           component={<Link to="/" />}
-          icon={<DashboardOutlinedIcon style={{ color: "#f73378" }} />}
+          icon={<DashboardOutlinedIcon style={{ color: "#ff5722" }} />}
         >
           <Typography variant="body2">Dashboard</Typography>
         </MenuItem>
@@ -77,7 +77,7 @@ function SideNav() {
         <MenuItem
           active={location.pathname === "/tankfarm"}
           component={<Link to="/tankfarm" />}
-          icon={<OilBarrelOutlinedIcon style={{ color: "#33eb91" }} />}
+          icon={<OilBarrelOutlinedIcon style={{ color: "#f73378" }} />}
         >
           <Typography variant="body2">Tankfarm</Typography>
         </MenuItem>
@@ -92,7 +92,7 @@ function SideNav() {
         <MenuItem
           active={location.pathname === "/addtruck"}
           component={<Link to="/addtruck" />}
-          icon={<AddBoxIcon style={{ color: "#ff5722" }} />}
+          icon={<AddBoxIcon style={{ color: "#33eb91" }} />}
         >
           <Typography variant="body2">Add Truck</Typography>
         </MenuItem>

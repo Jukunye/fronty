@@ -12,7 +12,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function ViewTruck({ open, handleClose }) {
+function ViewTruck({ open, handleClose, truck }) {
   return (
     <React.Fragment>
       <Dialog
@@ -37,33 +37,74 @@ function ViewTruck({ open, handleClose }) {
           </Toolbar>
         </AppBar>
         <Typography variant="h5">General Information</Typography>
-        <Divider />
-        <Typography variant="subtitle2">Driver name:</Typography>
-        <div
-          style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}
-        >
-          <Typography variant="subtitle2">Cab plate</Typography>
-          <Typography variant="subtitle1" style={{ marginLeft: "8px" }}>
-            {"KBJ 899Y"}
+        <Divider sx={{ mb: 1 }} />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Driver Name:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.driver}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Cab plate:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.cab_plate}
           </Typography>
         </div>
 
-        <div
-          style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}
-        >
-          <Typography variant="subtitle2">Trailer plate</Typography>
-          <Typography variant="subtitle1" style={{ marginLeft: "8px" }}>
-            {"KBJ 899Y"}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Trailer plate:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.trailer_plate}
           </Typography>
         </div>
-        <Typography>Delivery number</Typography>
-        <Typography>Loading date</Typography>
-        <Typography>Fuel Guage</Typography>
-        <Typography>Water reservoir</Typography>
-        <Typography>Number of seals</Typography>
-        <Typography>Seals condition</Typography>
-        <Typography>Sealing condition</Typography>
-        <Typography>Officer name</Typography>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Delivery number:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.delivery_number}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Loading date:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.loading_date}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Fuel Gauge:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.fuel_gauge}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Water reservoir:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.water_reservoir}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Number of seals:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.number_of_seals}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Seals condition:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.seals_condition}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Sealing condition:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.sealing_condition}
+          </Typography>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="body1">Officer name:</Typography>
+          <Typography variant="body2" style={{ marginLeft: "8px" }}>
+            {truck.general_info.officer_name}
+          </Typography>
+        </div>
         <Typography variant="h5">Weighbridge In</Typography>
         <Divider />
         <Typography variant="h5">Quaity Control</Typography>

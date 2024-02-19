@@ -70,6 +70,7 @@ const General = ({ truck, onSubmissionSuccess }) => {
       driver: values.driver,
       cab_plate: values.cab_plate,
       trailer_plate: values.trailer_plate,
+      status: "Weigh in",
       general_info: {
         delivery_number: values.delivery_number,
         loading_date: values.loading_date.format("YYYY-MM-DD"),

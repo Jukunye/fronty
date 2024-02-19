@@ -51,6 +51,7 @@ const WeighIn = ({ truck, onSubmissionSuccess }) => {
     };
 
     truck.weighbridge_in = weighbridge_in;
+    truck.status = "Lab";
 
     try {
       setPutLoading(true); // Set loading to true when POST request starts

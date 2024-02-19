@@ -35,6 +35,7 @@ const Tankfarm = ({ truck, onSubmissionSuccess }) => {
     };
 
     truck.tankfarm = tankfarm;
+    truck.status = "Weigh out";
 
     try {
       setPutLoading(true); // Set loading to true when POST request starts
