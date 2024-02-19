@@ -24,7 +24,7 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/dashboard/"
+          "http://54.198.64.165:8000/api/dashboard/"
         );
         setData(response.data);
         setLoading(false);
