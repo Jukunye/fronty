@@ -35,7 +35,7 @@ const weighbridgeOut = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://54.198.64.165:8000/api/weighbridge/out/"
+        "http://localhost:8000/api/weighbridge/out/"
       );
       setData(response.data);
       setLoading(false);

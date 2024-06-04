@@ -40,7 +40,7 @@ const Tankfarm = ({ truck, onSubmissionSuccess }) => {
     try {
       setPutLoading(true); // Set loading to true when POST request starts
       const response = await axios.put(
-        `http://54.198.64.165:8000/api/truck/${truck.id}/`,
+        `http://localhost:8000/api/truck/${truck.id}/`,
         truck
       );
       // console.log("Post response:", response.data);
