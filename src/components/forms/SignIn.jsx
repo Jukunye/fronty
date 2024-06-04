@@ -38,7 +38,7 @@ function SignIn() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/login/",
+        "http://127.0.0.1:8000/api/auth/login/",
         {
           username: data.get("username"),
           password: data.get("password"),
